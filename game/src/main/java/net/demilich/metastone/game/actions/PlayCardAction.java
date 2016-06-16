@@ -43,7 +43,11 @@ public abstract class PlayCardAction extends GameAction {
 			if (!card.hasAttribute(Attribute.COUNTERED)) {
 				play(context, playerId);
 			}
-
+			//if true, we're in a simulation, and <intentionally> haven't chose a battlecry.
+			//let the simulation take care of that and return early.
+			if(context.isInBattleCry()){
+				return;
+			}
 		} catch (Exception e) {
 			logger.error("ERROR while playing card " + card + " reference: " + cardReference);
 			context.getLogic().panicDump();

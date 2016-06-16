@@ -9,7 +9,9 @@ public class Deck {
 
 	private String name = "";
 	private final HeroClass heroClass;
-	private final CardCollection cards = new CardCollection();
+	//I need this to be protected so I can create a version of a card collection
+	//that draws cards deterministically for determinization in MCTS
+	protected CardCollection cards = new CardCollection();
 	private String description;
 	private String filename;
 	private boolean arbitrary;

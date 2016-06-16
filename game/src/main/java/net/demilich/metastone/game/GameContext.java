@@ -33,9 +33,12 @@ public class GameContext implements Cloneable, IDisposable {
 	public static final int PLAYER_2 = 1;
 
 	private static final Logger logger = LoggerFactory.getLogger(GameContext.class);
-
+	//isInBattlecry allows the subclass SimulationContext to use this information to enable battlecries
+	//I'm open to a more elegant solution, the ONLY reason I need this here is because PlayCardAction NEEDS
+	//to return early if a battlecry is currently in motion to make the SimulationContext work
+	private boolean isInBattlecry = false;
+	private GameLogic logic;
 	private final Player[] players = new Player[2];
-	private final GameLogic logic;
 	private final DeckFormat deckFormat;
 	private final TargetLogic targetLogic = new TargetLogic();
 	private TriggerManager triggerManager = new TriggerManager();
@@ -237,6 +240,8 @@ public class GameContext implements Cloneable, IDisposable {
 		return (Stack<EntityReference>) environment.get(Environment.EVENT_TARGET_REFERENCE_STACK);
 	}
 
+	public boolean isInBattleCry() {return this.isInBattlecry;}
+
 	public GameLogic getLogic() {
 		return logic;
 	}
@@ -341,6 +346,21 @@ public class GameContext implements Cloneable, IDisposable {
 		endGame();
 
 	}
+	public void playFromMiddle() {
+		boolean resuming = true;
+		while (!gameDecided()) {
+			if (!resuming) {
+				startTurn(activePlayer);
+			}
+			while (playTurn()) {
+			}
+			if (getTurn() > GameLogic.TURN_LIMIT) {
+				break;
+			}
+			resuming = false;
+		}
+		endGame();
+	}
 
 	public boolean playTurn() {
 		if (++actionsThisTurn > 99) {
@@ -415,6 +435,7 @@ public class GameContext implements Cloneable, IDisposable {
 		return targetLogic.resolveTargetKey(this, player, source, targetKey);
 	}
 
+	public void setLogic(GameLogic logic){this.logic = logic;}
 	public void setIgnoreEvents(boolean ignoreEvents) {
 		this.ignoreEvents = ignoreEvents;
 	}

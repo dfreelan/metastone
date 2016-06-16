@@ -36,7 +36,6 @@ public class CardCollection implements Iterable<Card>, Cloneable {
 		for (Card card : cards) {
 			clone.add(card.clone());
 		}
-
 		return clone;
 	}
 

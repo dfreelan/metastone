@@ -22,7 +22,10 @@ public class Player extends CustomCloneable {
 	private Hero hero;
 	private final String deckName;
 
-	private final CardCollection deck;
+	//I can't have this be final for MCTS, I need to be able to input my own
+	//custom deck that is deterministic in its draws
+	private CardCollection deck;
+
 	private final CardCollection hand = new CardCollection();
 	private final List<Entity> setAsideZone = new ArrayList<>();
 	private final List<Entity> graveyard = new ArrayList<>();
@@ -87,6 +90,7 @@ public class Player extends CustomCloneable {
 		characters.addAll(getMinions());
 		return characters;
 	}
+	public void setDeck(CardCollection deck) { this.deck = deck; }
 
 	public CardCollection getDeck() {
 		return deck;

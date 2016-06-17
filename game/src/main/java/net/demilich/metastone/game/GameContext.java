@@ -447,8 +447,9 @@ public class GameContext implements Cloneable, IDisposable {
 			getEnvironment().put(Environment.PENDING_CARD, null);
 		}
 	}
-
-	protected void startTurn(int playerId) {
+	//I need this for my simulatorContext, so I can appropriately end the turn
+	//in my search tree. (i am searching possible enemy actions)
+	public void startTurn(int playerId) {
 		turn++;
 		logic.startTurn(playerId);
 		onGameStateChanged();

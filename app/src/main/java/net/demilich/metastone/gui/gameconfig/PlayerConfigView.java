@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import behaviors.standardMCTS.MCTSBehavior;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -164,6 +165,14 @@ public class PlayerConfigView extends VBox {
 		if (selectionHint == PlayerConfigType.OPPONENT) {
 			behaviourList.add(new HumanBehaviour());
 		}
+
+
+		MCTSBehavior standardMCTS = new MCTSBehavior(1.4,20,10000,new PlayRandomBehaviour());
+		standardMCTS.setName("Standard MCTS");
+		behaviourList.add(standardMCTS);
+
+
+
 
 		behaviourList.add(new PlayRandomBehaviour());
 

@@ -117,11 +117,9 @@ public class GameLogic implements Cloneable {
 	private final int MAX_HISTORY_ENTRIES = 100;
 	private Queue<String> debugHistory = new LinkedList<>();
 
-	public GameLogic() {
-		idFactory = new IdFactory();
-	}
+	public GameLogic() { idFactory = new IdFactory(); }
 
-	private GameLogic(IdFactory idFactory) {
+	protected GameLogic(IdFactory idFactory) {
 		this.idFactory = idFactory;
 	}
 
@@ -702,6 +700,11 @@ public class GameLogic implements Cloneable {
 		player.getStatistics().armorGained(armor);
 		context.fireGameEvent(new ArmorGainedEvent(context, player.getHero()));
 	}
+	public IdFactory getIdFactory(){ return this.idFactory; }
+
+	public GameContext getGameContext() {
+		return context;
+	}
 
 	public Actor getAnotherRandomTarget(Player player, Actor attacker, Actor originalTarget, EntityReference potentialTargets) {
 		List<Entity> validTargets = context.resolveTarget(player, null, potentialTargets);
@@ -864,7 +867,8 @@ public class GameLogic implements Cloneable {
 		return null;
 	}
 
-	private void handleEnrage(Actor entity) {
+	//had to change permissions, need to call this for battlecries
+	protected void handleEnrage(Actor entity) {
 		if (!entity.hasAttribute(Attribute.ENRAGABLE)) {
 			return;
 		}
@@ -1434,7 +1438,8 @@ public class GameLogic implements Cloneable {
 		newCard.setLocation(CardLocation.DECK);
 	}
 
-	private void resolveBattlecry(int playerId, Actor actor) {
+	//needed to change permission for SimulationLogic
+	protected void resolveBattlecry(int playerId, Actor actor) {
 		BattlecryAction battlecry = actor.getBattlecry();
 		Player player = context.getPlayer(playerId);
 		if (!battlecry.canBeExecuted(context, player)) {
@@ -1502,6 +1507,8 @@ public class GameLogic implements Cloneable {
 	public void setContext(GameContext context) {
 		this.context = context;
 	}
+
+
 
 	public void setLoggingEnabled(boolean loggingEnabled) {
 		this.loggingEnabled = loggingEnabled;

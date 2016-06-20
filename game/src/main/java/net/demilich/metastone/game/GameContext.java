@@ -120,12 +120,14 @@ public class GameContext implements Cloneable, IDisposable {
 		}
 
 		if (winner != null) {
-			logger.debug("Game finished after " + turn + " turns, the winner is: " + winner.getName());
+			//commented out to remove spam
+			//logger.debug("Game finished after " + turn + " turns, the winner is: " + winner.getName());
 			winner.getStatistics().gameWon();
 			Player looser = getOpponent(winner);
 			looser.getStatistics().gameLost();
 		} else {
-			logger.debug("Game finished after " + turn + " turns, DRAW");
+			//commented out to remove spam
+			//logger.debug("Game finished after " + turn + " turns, DRAW");
 			getPlayer1().getStatistics().gameLost();
 			getPlayer2().getStatistics().gameLost();
 		}

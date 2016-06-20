@@ -42,7 +42,8 @@ public class AuraBuffSpell extends Spell {
 		int attackBonus = desc.getValue(SpellArg.ATTACK_BONUS, context, player, target, source, 0);
 		int hpBonus = desc.getValue(SpellArg.HP_BONUS, context, player, target, source, 0);
 		Actor targetActor = (Actor) target;
-		logger.debug("{} gains ({} from aura effect)", targetActor, attackBonus + "/" + hpBonus);
+        //commented out to remove spam
+		//logger.debug("{} gains ({} from aura effect)", targetActor, attackBonus + "/" + hpBonus);
 		if (attackBonus != 0) {
 			targetActor.modifyAttribute(Attribute.AURA_ATTACK_BONUS, attackBonus);
 		}

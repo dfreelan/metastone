@@ -26,7 +26,8 @@ public class GainManaSpell extends Spell {
 	@Override
 	protected void onCast(GameContext context, Player player, SpellDesc desc, Entity source, Entity target) {
 		int mana = desc.getValue(SpellArg.VALUE, context, player, target, source, 0);
-		logger.debug("{} gains {} mana", player.getName(), mana);
+		//commented out to remove spam
+		//logger.debug("{} gains {} mana", player.getName(), mana);
 		context.getLogic().modifyCurrentMana(player.getId(), mana);
 	}
 

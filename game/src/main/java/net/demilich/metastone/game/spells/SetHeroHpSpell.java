@@ -28,9 +28,11 @@ public class SetHeroHpSpell extends Spell {
 		int value = desc.getValue(SpellArg.VALUE, context, player, target, source, 0);
 		if (actor.getMaxHp() < value) {
 			actor.setMaxHp(value);
-			logger.debug("{}'s Max Hp have been set to {}", actor, actor.getMaxHp());
+			//commented out to remove spam
+			//logger.debug("{}'s Max Hp have been set to {}", actor, actor.getMaxHp());
 		}
 		actor.setHp(value);
-		logger.debug("{}'s Hp have been set to {}", actor, actor.getHp());
+		//commented out to remove spam
+		//logger.debug("{}'s Hp have been set to {}", actor, actor.getHp());
 	}
 }

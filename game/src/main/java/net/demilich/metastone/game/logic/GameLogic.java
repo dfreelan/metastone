@@ -515,7 +515,8 @@ public class GameLogic implements Cloneable {
 	}
 
 	public void discardCard(Player player, Card card) {
-		logger.debug("{} discards {}", player.getName(), card);
+		//commented out to remove spam
+		//logger.debug("{} discards {}", player.getName(), card);
 		// only a 'real' discard should fire a DiscardEvent
 		if (card.getLocation() == CardLocation.HAND) {
 			context.fireGameEvent(new DiscardEvent(context, player.getId(), card));
@@ -695,7 +696,8 @@ public class GameLogic implements Cloneable {
 	}
 
 	public void gainArmor(Player player, int armor) {
-		logger.debug("{} gains {} armor", player.getHero(), armor);
+		//commented out to remove spam
+		//logger.debug("{} gains {} armor", player.getHero(), armor);
 		player.getHero().modifyArmor(armor);
 		player.getStatistics().armorGained(armor);
 		context.fireGameEvent(new ArmorGainedEvent(context, player.getHero()));

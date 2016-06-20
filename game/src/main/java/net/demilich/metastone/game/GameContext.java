@@ -244,6 +244,8 @@ public class GameContext implements Cloneable, IDisposable {
 
 	public boolean isInBattleCry() {return this.isInBattlecry;}
 
+	public void setIsInBattleCry(boolean isInBattlecry) {this.isInBattlecry = isInBattlecry;}
+
 	public GameLogic getLogic() {
 		return logic;
 	}

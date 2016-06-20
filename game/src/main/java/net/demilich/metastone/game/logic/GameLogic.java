@@ -104,8 +104,8 @@ public class GameLogic implements Cloneable {
 	private static boolean hasPlayerLost(Player player) {
 		return player.getHero().getHp() < 1 || player.getHero().hasAttribute(Attribute.DESTROYED);
 	}
-
-	private final TargetLogic targetLogic = new TargetLogic();
+	//needed to change to protected for simulationLogic
+	protected final TargetLogic targetLogic = new TargetLogic();
 	private final ActionLogic actionLogic = new ActionLogic();
 	private final SpellFactory spellFactory = new SpellFactory();
 	private final IdFactory idFactory;

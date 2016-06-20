@@ -23,7 +23,8 @@ public class BuffSpell extends Spell {
 		if (value != 0) {
 			attackBonus = hpBonus = value;
 		}
-		logger.debug("{} gains ({})", target, attackBonus + "/" + hpBonus);
+        //commented out to remove spam
+		//logger.debug("{} gains ({})", target, attackBonus + "/" + hpBonus);
 
 		if (attackBonus != 0) {
 			target.modifyAttribute(Attribute.ATTACK_BONUS, +attackBonus);

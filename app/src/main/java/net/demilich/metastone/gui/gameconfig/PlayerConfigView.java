@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import behaviors.heuristic.HeuristicBehavior;
 import behaviors.standardMCTS.MCTSBehavior;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -171,8 +172,13 @@ public class PlayerConfigView extends VBox {
 		standardMCTS.setName("Standard MCTS");
 		behaviourList.add(standardMCTS);
 
+		MCTSBehavior heuristicMCTS = new MCTSBehavior(1.4,20,10000,new HeuristicBehavior());
+		heuristicMCTS.setName("Heuristic MCTS");
+		behaviourList.add(heuristicMCTS);
 
-
+		HeuristicBehavior heuristic = new HeuristicBehavior();
+		heuristic.setName("Heuristic");
+		behaviourList.add(heuristic);
 
 		behaviourList.add(new PlayRandomBehaviour());
 

@@ -149,7 +149,7 @@ public class CardCatalogue {
 		for (CardDesc desc : cardDesc.values()) {
 			Card instance = desc.createInstance();
 			CardCatalogue.add(instance);
-			logger.debug("Adding {} to CardCatalogue", instance);
+			//logger.debug("Adding {} to CardCatalogue", instance);
 		}
 	}
 

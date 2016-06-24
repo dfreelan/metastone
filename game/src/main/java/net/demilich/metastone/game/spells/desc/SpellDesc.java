@@ -49,6 +49,7 @@ public class SpellDesc extends Desc<SpellArg> {
 		return clone;
 	}
 
+
 	public EntityFilter getEntityFilter() {
 		return (EntityFilter) get(SpellArg.FILTER);
 	}

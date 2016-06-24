@@ -369,6 +369,8 @@ public class GameContext implements Cloneable, IDisposable {
 	public boolean playTurn() {
 		if (++actionsThisTurn > 99) {
 			logger.warn("Turn has been forcefully ended after {} actions", actionsThisTurn);
+			System.err.println("100 turn state looks like: "  + this);
+			System.err.println("valid actions is: " + getValidActions());
 			endTurn();
 			return false;
 		}

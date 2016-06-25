@@ -18,7 +18,8 @@ import net.demilich.metastone.game.gameconfig.PlayerConfig;
 
 public class Player extends CustomCloneable {
 
-	private final String name;
+	//had to change this to not be final for ease of use, changing the behavior after config
+	private String name;
 	private Hero hero;
 	private final String deckName;
 
@@ -134,6 +135,10 @@ public class Player extends CustomCloneable {
 
 	public String getName() {
 		return "'" + name + "' (" + getHero().getName() + ")";
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public HashSet<String> getSecrets() {
